@@ -1,0 +1,42 @@
+<%- model_class = Aluno -%><br>
+<div class="panel panel-default" style="width: 80%; margin: 0 auto; ">
+  <div class="panel-body"><h2> Listando Alunos</h2>
+      <tr><%= will_paginate @alunos, renderer: BootstrapPagination::Rails %></tr>
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th><%= 'Código' %></th>
+          <th><%= 'Nome' %></th>
+          <th><%= 'Celular' %></th>
+          <th><%= 'Telefone' %></th>
+          <th><%= 'Ativo' %></th>
+          <th><%= 'Criado em' %></th>
+          <th><%= 'Ações' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @alunos.each do |aluno| %>
+          <tr>
+            <td width: 5% ><%= link_to aluno.id, aluno_path(aluno),:size => 13 %></td>
+            <td width: 70%><%= aluno.nome %></td>
+            <td width: 5% ><%= aluno.celular %></td>
+            <td width: 5% ><%= aluno.telefone %></td>
+            <td width: 5% ><%= aluno.ativo  %></td>
+            <td width: 5% ><%= aluno.created_at.strftime("%d %b. %Y") %></td>
+            <td width: 5% >
+              <%= link_to 'Mostrar',aluno_path(aluno), :class => 'btn btn-primary btn-sm' %>
+              <%= link_to 'Editar',edit_aluno_path(aluno), :class => 'btn btn-success btn-sm' %>
+              <%= link_to 'Apagar',aluno_path(aluno),:method => :delete, data: { confirm: 'Você tem certeza?'},:class => 'btn btn-danger btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+            <%= link_to 'Incluir novo Aluno',new_aluno_path,:class => 'btn btn-primary' %>
+        </div>
+      </div>
+
+</div>

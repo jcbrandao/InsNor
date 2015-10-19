@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.1'
+#heroku
+gem 'rails_12factor', group: :production
 
 gem 'will_paginate-bootstrap'
 gem 'rails', '4.2.1'
@@ -9,6 +11,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem "paperclip", "~> 4.3"
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -16,7 +19,8 @@ group :development, :test do
 end
 gem 'bootstrap-sass'
 gem 'devise'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.11'
+#gem 'pg'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
 gem 'upmin-admin'
@@ -28,3 +32,4 @@ end
 group :production do
   gem 'rails_12factor'
 end
+gem 'simple_form'

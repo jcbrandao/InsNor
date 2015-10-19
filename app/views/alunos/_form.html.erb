@@ -1,5 +1,5 @@
 <div class="form-horizontal">
-<%= form_for(@aluno) do |f| %>
+<%= form_for(@aluno, :url => aluno_path, :html => { :multipart => true }) do |f| %>
   <% if @aluno.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@aluno.errors.count, "error") %> prohibited this aluno from being saved:</h2>
@@ -11,22 +11,1765 @@
       </ul>
     </div>
   <% end %>
-<div class="form-group">
-  <div class="field">
-    <%= f.label :nome %><br>
-    <%= f.text_field :nome %>
-  </div>
-  <div class="field">
-    <%= f.label :telefone %><br>
-    <%= f.text_field :telefone %>
-  </div>
-  <div class="field">
-    <%= f.label :celular %><br>
-    <%= f.text_field :celular %>
-  </div>
-</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+<div class="panel panel-default" style="width: 80%; margin: 0 auto; ">
+  <div class="panel-body"><h2>Editando Aluno</h2>
+
+    <!-------->
+    <div id="content">
+        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs"><li class="active">
+                <a href="#dados_pessoais" data-toggle="tab" class="glyphicon glyphicon-user"> Dados Pessoais</a></li>
+            <li><a href="#dados_familiares" data-toggle="tab" class="glyphicon glyphicon-home"> Dados Familiares</a></li>
+            <li><a href="#dados_escolares" data-toggle="tab" class="glyphicon glyphicon-education"> Dados Escolares</a></li>
+            <li><a href="#saude" data-toggle="tab"class="glyphicon glyphicon-plus-sign" > Histórico Saúde</a></li>
+            <li><a href="#beneficios" data-toggle="tab"class="glyphicon glyphicon-star-empty" > Benefícios</a></li>
+            <li><a href="#gestação" data-toggle="tab" class="glyphicon glyphicon-baby-formula"> Gestação/Nascimento</a></li>
+            <li><a href="#vida" data-toggle="tab" class="glyphicon glyphicon-time"> 1º Ano de Vida</a></li>
+            <li><a href="#pdi" data-toggle="tab" class="glyphicon glyphicon-time"> PDI</a></li>
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+
+            <div class="tab-pane active" id="dados_pessoais"><br>
+
+            <!---Dados Pessoais---->
+            <div class="well well-sm">Dados do Aluno</div>
+
+              <div class="row">
+
+                  <div class="col-sm-12 col-lg-2 ">
+                        <div class="control-group">
+                          <%= f.label :avatar , "Foto", :class => 'control-label' %>
+                          <div class="controls">
+                          <td><%= image_tag @aluno.avatar.url(:medium) %>
+                          <%= f.file_field :avatar, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-sm-12 col-lg-10 ">
+
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-6 ">
+                                  <div class="control-group">
+                                    <%= f.label :nome , "Nome", :class => 'control-label' %>
+                                    <div class="controls">
+                                    <%= f.text_field :nome, :class => 'form-control' %></div>
+                                  </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4 ">
+                                  <div class="control-group">
+                                    <%= f.label :endereco , "Endereço", :class => 'control-label' %>
+                                    <div class="controls">
+                                    <%= f.text_field :endereco, :class => 'form-control' %></div>
+                                  </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-2 ">
+                                    <div class="control-group">
+                                    <%= f.label :numero , "Número", :class => 'control-label' %>
+                                    <div class="controls">
+                                    <%= f.text_field :numero, :class => 'form-control' %></div>
+                                  </div>
+                            </div>
+                      </div>  
+                    
+                      <div class="row">
+
+                          <div class="col-sm-4 col-lg-6 ">
+                                  <div class="control-group">
+                                  <%= f.label :bairro , "Bairro", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :bairro, :class => 'form-control' %></div>
+                                </div>
+                         </div>
+
+                          <div class="col-sm-4 col-lg-4 ">
+                                <div class="control-group">
+                                  <%= f.label :cidade , "Cidade", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :cidade, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                          <div class="col-sm-4 col-lg-2 ">
+                                <div class="control-group">
+                                  <%= f.label :estado , "Estado", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :estado, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                      </div>
+                      
+                      <div class="row">
+
+                          <div class="col-xs-6">
+                                <div class="control-group">
+                                  <%= f.label :email , "E-Mail", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :email, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                          <div class="col-md-2">
+                                <div class="control-group">
+                                  <%= f.label :telefone , "Tel. Residêncial", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :telefone, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                          <div class="col-md-2">
+                                <div class="control-group">
+                                  <%= f.label :celular , "Tel. Celular", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :celular, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                           <div class="col-md-2">
+             
+                                <div class="control-group">
+                                  <%= f.label :ativo , "Aluno Ativo ?", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.check_box :ativo, :class => "checkbox" %></div>
+                                </div>
+                           </div>
+                      </div>
+
+                      <div class="row">
+
+                          <div class="col-xs-3">
+                                <div class="control-group">
+                                  <%= f.label :rg , "R.G.", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :rg, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                          <div class="col-md-3">
+                                <div class="control-group">
+                                  <%= f.label :cpf , "C.P.F.", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :cpf, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                          <div class="col-md-3">
+                                <div class="control-group">
+                                  <%= f.label :data_nascimento , "Data Nascimento", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :data_nascimento, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                      <div class="col-md-3">
+                                <div class="control-group">
+                                  <%= f.label :data_cadastro , "Data Cadastro", :class => 'control-label' %>
+                                  <div class="controls">
+                                  <%= f.text_field :data_cadastro, :class => 'form-control' %></div>
+                                </div>
+                          </div>
+
+                      </div>
+
+             <div class="row">
+
+                  <div class="col-xs-3">
+                         <div class="control-group">
+                          <%= f.label :naturalidade , "Naturalidade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :naturalidade, :class => 'form-control' %></div>
+                        </div>
+                 </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :ciclo , "Ciclo", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :ciclo, :class => 'form-control' %></div>
+                        </div>
+                 </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :ra , "R.A.", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :ra, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+              <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :idpdi , "SIGM", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :idpdi, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+              </div>
+
+
+
+
+
+
+                  </div>
+                </div>
+
+
+
+             <div class="row">
+
+                  <div class="col-xs-4">
+                        <div class="control-group">
+                          <%= f.label :deficiencia , "Deficiência", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :deficiencia, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-4">
+                        <div class="control-group">
+                          <%= f.label :data_fechamento_diagnostico , "Data do Fechamento diagnóstico", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :data_fechamento_diagnostico, :class => 'form-control' %></div>
+                        </div>
+                 </div>
+
+                  <div class="col-md-4">
+                        <div class="control-group">
+                          <%= f.label :escola_origem , "Escola de Origem", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escola_origem, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+            </div>
+            <!---Final dados Pessoais---->
+
+
+            </div>
+            
+            <div class="tab-pane" id="dados_familiares"><br>
+
+              <!---Dados Familiares---->
+            <div class="well well-sm">Dados do Pai</div>
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                        <div class="control-group">
+                          <%= f.label :nome_pai , "Nome", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nome_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-4">
+                        <div class="control-group">
+                          <%= f.label :endereco_pai , "Endereço", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :endereco_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-2">
+                        <div class="control-group">
+                          <%= f.label :numero_pai , "Número", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :numero_pai, :class => 'form-control' %></div>
+                        </div>
+
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-6">
+                        <div class="control-group">
+                          <%= f.label :bairro_pai , "Bairro", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :bairro_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-4">
+                        <div class="control-group">
+                          <%= f.label :cidade_pai , "Cidade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :cidade_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-2">
+                        <div class="control-group">
+                          <%= f.label :estado_pai , "Estado", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :estado_pai, :class => 'form-control' %></div>
+                        </div>
+
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-3">
+                         <div class="control-group">
+                          <%= f.label :data_nascimento_pai , "Data de Nascimento", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :data_nascimento_pai, :class => 'form-control' %></div>
+                        </div>
+                 </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :escolaridade_pai , "Escolaridade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolaridade_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :profissao_pai , "Profissão", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :profissao_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :telefone_pai , "Tel. Residêncial", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :telefone_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-3">
+                        <div class="control-group">
+                          <%= f.label :cpf_pai , "C.P.F.", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :cpf_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+                        <div class="control-group">
+                          <%= f.label :rg_pai , "R.G.", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :rg_pai, :class => 'form-control' %></div>
+                        </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+                        <div class="control-group">
+                          <%= f.label :obs_pai , "Observação", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :obs_pai, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+              </div><br>
+
+            <!---Final dados Pessoais---->
+
+            <div class="well well-sm">Dados da Maẽ</div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                        <div class="control-group">
+                          <%= f.label :nome_mae , "Nome", :class =>'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nome_mae, :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :endereco_mae , "Endereço", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :endereco_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-2">
+
+                          <div class="control-group">
+                          <%= f.label :numero_mae, "Número", :class => 'control-label' %>
+                          <div class="controls">
+                          <%=f.text_field :numero_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+              </div>
+
+
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                        <div class="control-group">
+                          <%= f.label :bairro_mae, "Bairro", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :bairro_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-4">
+
+                         <div class="control-group">
+                          <%= f.label :cidade_mae, "Cidade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :cidade_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-2">
+
+                        <div class="control-group">
+                          <%= f.label :estado_mae, "Estado", :class => 'control-label' %>
+                          <div class="controls">
+                          <%=f.text_field :estado_mae,  :class => 'form-control' %> </div>
+                        </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-3 ">
+                        <div class="control-group">
+                          <%= f.label :data_nascimento_mae, "Data Nascimento", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :data_nascimento_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+
+                         <div class="control-group">
+                          <%= f.label :escolaridade_mae, "Escolaridade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolaridade_mae,  :class => 'form-control' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-3">
+
+                         <div class="control-group">
+                          <%= f.label :profissao_mae, "Profissão", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :profissao_mae,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-3">
+
+                         <div class="control-group">
+                          <%= f.label :telefone_mae, "Tel", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :telefone_mae,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-3 ">
+                         <div class="control-group">
+                          <%= f.label :rg_mae, "R.G.", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :rg_mae,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-3">
+
+                         <div class="control-group">
+                          <%= f.label :cpf_mae, "C.P.F", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :cpf_mae,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+
+                         <div class="control-group">
+                          <%= f.label :obs_mae, "Observação", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :obs_mae,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div><br>
+
+            <div class="well well-sm">Histórico Familiar</div>
+  
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :irmaos, "Tem irmãos? Quantos e idade?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :irmaos,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+
+                         <div class="control-group">
+                          <%= f.label :quantas, "Quantas pessoas moram na casa", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :quantas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :idade, "Idade em que o aluno entrou na escola", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :idade,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+
+                         <div class="control-group">
+                          <%= f.label :antecedentes, "Histórico escolar e antecedentes relevantes", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :antecedentes,  :class => 'form-control' %></div>
+                          </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :caracteristicas, "Características do aluno", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :caracteristicas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :opiniao, "Opinião da Família sobre a vida escolar", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :opiniao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+
+                         <div class="control-group">
+                          <%= f.label :outra_natureza, "Antecedentes de outra natureza", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :outra_natureza,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :tipo_local, "Tipo/Local/Periodicidade", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :tipo_local,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+  
+              </div>
+
+            </div>
+
+            <div class="tab-pane" id="dados_escolares"><br>
+              
+              <!---Dados Escolares---->
+            <div class="well well-sm">Desenvolvimento da Escrita</div>
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                          <div class="control-group">
+                          <%= f.label :escolar_trocas, "Trocas", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_trocas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_fala_atual, "Fala Atual", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_fala_atual,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_ordens, "Entende Ordens", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_ordens,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_idade, "Entrou na escola com ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_idade,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+
+              <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_numero_escolas, "Número de escolas que freguentou ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_numero_escolas,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_aproveitamento, "Aproveitamento ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_aproveitamento,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+
+              <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_comportamento, "Comportamento ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_comportamento,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_frequenta_escola, "Atualmente frequenta escola ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_frequenta_escola,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+        
+                <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_vida_escolar, "Descrição da vida escolar", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_vida_escolar,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_vida_social, "Descrição vida social", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_vida_social,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+  
+                <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_vive, "Com quem o aprendiz vive ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_vive,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+
+                         <div class="control-group">
+                          <%= f.label :escolar_ambiente_familiar, "Descrição do Ambiente Familiar", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_ambiente_familiar,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+  
+                <div class="row">
+
+                    <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :escolar_distrair, "Como o aprendiz prefere se distrair", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_distrair,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :escolar_amigos, "Tem amigos ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :escolar_amigos,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+   
+            </div>
+
+
+            <div class="tab-pane" id="saude"><br>
+              
+            <div class="well well-sm">Medicação</div>
+
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :saude_medicacao, "Medicação", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_medicacao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :saude_alergia, "Alergias ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_alergia,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :saude_acompanhamento_medico, "Acompanhamento Médico", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_acompanhamento_medico,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :saude_nome_medico, "Nome Médico", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_nome_medico,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-xs-6 ">
+                         <div class="control-group">
+                          <%= f.label :saude_tem_convenio, "Tem convênio médico", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_tem_convenio,  :class => 'form-control' %></div>
+                          </div>
+                 </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :saude_convenio, "Qual ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_convenio,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div><br>
+ 
+            <div class="well well-sm">Terapias fora do Instituto</div>
+
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :saude_fono, "Faz Fonoaudiologia ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :saude_fono,  :class => 'check_box' %></div>
+                          </div>
+                </div>
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :saude_psico, "Faz Psicologia ?", :class => 'control-label' %>
+                          <div class="controls">
+                            <%= f.check_box :saude_psico,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :saude_outros, "Faz outros tratamentos ? qual ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude_outros,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+<br>
+            <div class="well well-sm">Histórico</div>
+
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :saude, "Tem problemas de saúde ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :saude,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :uso_medicamentos, "Faz uso de medicamentos controlados ? Quais ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :uso_medicamentos,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :relatorio, "Existe relatório com recomendação de saúde ? Anexar", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :relatorio,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-xs-4 ">
+                          <div class="control-group">
+                          <%= f.label :carteira_sus, "Número do prontuário Centro de Saúde", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :carteira_sus,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+              </div>
+      
+        </div>
+
+        <div class="tab-pane" id="beneficios"><br>
+            
+          <div class="well well-sm">Benefícios</div>
+
+              <div class="row">
+
+                  <div class="col-xs-4 ">
+                         <div class="control-group">
+                          <%= f.label :beneficio_bpc, "Benefício de Prestação Continuada (BPC)", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :beneficio_bpc,  :class => 'check_box' %></div>
+
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :beneficio_bf, "Benefício de Bolsa Família (BF)", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :beneficio_bf,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :beneficio_viva_leite, "Benefício Viva Leite (BVL)", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :beneficio_viva_leite,  :class => 'check_box' %></div>
+                          </div>
+                </div>
+
+              </div>
+
+            <div class="row">
+
+                    <div class="col-md-12 ">
+                          <div class="control-group">
+                          <%= f.label :beneficio_outro, "Outros Benefícios - Especificar", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :beneficio_outro,  :class => 'form-control' %></div>
+                          </div>
+                    </div>
+
+            </div>
+
+            </div>
+
+            <div class="tab-pane" id="gestação"><br>
+  
+          <div class="well well-sm">Gestação</div>
+
+              <div class="row">
+
+                  <div class="col-md-4 ">
+                         <div class="control-group">
+                          <%= f.label :gestacao_gravidez, "Como foi a gravidez ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :gestacao_gravidez,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                          <div class="control-group">
+                          <%= f.label :gestacao_desejada, "A criança foi desejada ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :gestacao_desejada,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :gestacao_mexer, "Sentiu a criança mexer ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :gestacao_mexer,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-4 ">
+                          <div class="control-group">
+                          <%= f.label :gestacao_prenatal, "Fez pré-natal ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :gestacao_prenatal,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :gestacao_doencas, "Doenças na Gravidez ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :gestacao_doencas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :gestacao_medicamentos, "Usou algum medicamento durante a gravidez ? Quais ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :gestacao_medicamentos,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+
+            <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :gestacao_sobre, "Observação sobre a gravidez ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :gestacao_sobre,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+          <br>
+          <div class="well well-sm">Condições de Nascimento</div>
+
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                          <div class="control-group">
+                          <%= f.label :nascimento_local, "Local de nascimento", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_local,  :class => 'form-control' %></div>
+                          </div>
+                </div>
+             </div>
+
+          <br>
+          <div class="well well-sm">Parto</div>
+
+              <div class="row">
+                    <div class="col-md-12">
+                          <div class="control-group">
+                            <%= label_tag "Tipo de Parto:" %>&nbsp;&nbsp;&nbsp;
+                            <%= f.radio_button :nascimento_parto, '1' %><%= label_tag :purpose_feedback, 'Normal' ,:checked => true %> &nbsp;&nbsp;
+                            <%= f.radio_button :nascimento_parto, '2' %><%= label_tag :purpose_prayer, '     Cesária' %>&nbsp;&nbsp;&nbsp;
+                            <%= f.radio_button :nascimento_parto, '3' %><%= label_tag :purpose_praise, '     Hospitalar' %>&nbsp;&nbsp;&nbsp;
+                            <%= f.radio_button :nascimento_parto, '4' %><%= label_tag :purpose_bug, '    Casa' %>&nbsp;&nbsp;&nbsp;
+                            <%= f.radio_button :nascimento_parto, '5' %><%= label_tag :purpose_other, '     Outros' %>
+                          </div>
+                    </div>
+              </div>
+             
+              <div class="row">
+
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_peso, "Peso ao nascimento ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_peso,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                   <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_demorado, "Parto demorado ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_demorado,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+            
+          <br>
+          <div class="well well-sm">Ao Nascer</div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_cordao, "Circular de cordão ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_cordao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_oxigenio, "Oxigênio ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_oxigenio,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+            
+                <div class="row">
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_doencas, "Doenças pós-part ? Quais ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_doencas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_posicao, "Posição de nascimento ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_posicao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+
+                <div class="row">
+
+              <div class="col-md-6 ">
+                          <div class="control-group">
+                          <%= f.label :nascimento_reacoes, "Primeiras reações ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_reacoes,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_chorou, "Chorou lógo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_chorou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+
+                <div class="row">
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_roxo, "Ficou roxo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_roxo,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :nascimento_observacoes, "Observações após o nascimento ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :nascimento_observacoes,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+            </div>
+
+          <div class="tab-pane" id="vida"><br>
+
+          <div class="well well-sm">1º Ano de Vida</div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_relato, "Relato", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_relato,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :primeiro_criado, "Com quem foi criado ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_criado,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-12">
+                         <div class="control-group">
+                          <%= f.label :primeiro_doenca, "Teve alguma doença grave ? qual ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_doenca,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+          <br>
+          <div class="well well-sm">Doenças da Infância</div>
+
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                          <div class="control-group">
+                          <%= f.label :primeiro_alergia, "Alergia ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_alergia,  :class => 'check_box' %></div>
+
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_rinite, "Rinite ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_rinite,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_asma, "Asma ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_asma,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_adenoide, "Adenoide ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_adenoide,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_bronquite, "Bronquite ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_bronquite,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                          <div class="control-group">
+                          <%= f.label :primeiro_otite, "Otite ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_otite,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+            </div>
+  
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_garganta, "Garganta ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_garganta,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_bronco, "Broncopneumonia ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_bronco,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-8 ">
+                         <div class="control-group">
+                          <%= f.label :primeiros_outros, "Outros ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiros_outros,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+
+          <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_internado, "Foi internado ? Qual a causa ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_internado,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_acidentes, "Acidentes ? Quais ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_acidentes,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+          </div>
+
+          <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_sono, "Como é o sono ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_sono,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_soliloquio, "Solilóquio ? (fala sozinho)", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_soliloquio,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+          </div>
+
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_epilepsia, "Eplepsia ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_epilepsia,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_convulsao, "Convulsão ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_convulsao,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_escoplesia, "Escolplesia noturna ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_escoplesia,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_bruxismo, "Bruxismo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_bruxismo,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_sonambulismo, "Sonambulismo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_sonambulismo,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_pesadelo, "Pesadelos ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_pesadelo,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+            </div>
+
+
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_ronco, "Ronco ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_ronco,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_baba, "Baba noturna ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_baba,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_respira, "Respira pela boca ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_respira,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_transpira, "Transpira ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_transpira,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_eneurese, "Enurese Noturna ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_eneurese,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_eneurese, "Eneurese Diurna ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_eneurese,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_unha, "Roe unha ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_unha,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mao, "Mão na Boca ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_mao,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_boca, "Fica de boca aberta ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_boca,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_chupa, "Chupa o dedo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_chupa,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_chupeta, "Chupeta ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_chupeta,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mamadeira, "Mamadeira ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_mamadeira,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_audicao, "Audição ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_audicao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :primeiro_visao, "Visão ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_visao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_sexualidade, "Sexualidade ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_sexualidade,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+              </div>
+
+          <br>
+          <div class="well well-sm">Alimentação</div>
+
+              <div class="row">
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mamou, "Mamou logo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_mamou,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2">
+                         <div class="control-group">
+                          <%= f.label :primeiro_engolia, "Engolia ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_engolia,  :class => 'check_box' %></div>
+                        </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_vomitava, "Vomitava ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_vomitava,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_engasgava, "Engasgava ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_engasgava,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_succao, "Sucção forte ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_succao,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+                  <div class="col-md-2 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_refluxo, "Refluxo ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.check_box :primeiro_refluxo,  :class => 'check_box' %></div>
+                          </div>
+                  </div>
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-4 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_amamentacao, "Amamentação no peito até que idade ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_amamentacao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mamadeira_01, "Usou mamadeira ? até que idade ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_mamadeira_01,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-4">
+                         <div class="control-group">
+                          <%= f.label :primeiro_inicio_alimentacao, "Em que idade iniciou a alimentação salgada ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_inicio_alimentacao,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            
+
+            </div>
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_concistencia, "Consistência ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_concistencia,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+          <br>
+                  
+          <div class="well well-sm">Atitude no Desmame</div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mamadeira_02, "Seio ? Como parou ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_mamadeira_02,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6">
+                         <div class="control-group">
+                          <%= f.label :primeiro_mamadeira, "Mamadeira ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_mamadeira,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_rejeitou, "Rejeitou alimentação alguma vez ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_rejeitou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_tomada, "Atitude Tomada ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_tomada,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_super, "Foi super alimentado ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_super,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_solidos, "Quando iniciou alimentos sólidos ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_solidos,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+              </div>
+  
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_atual, "Alimentação Atual ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_atual,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_engolir, "Mastiga para engolir ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_engolir,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+              </div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_engolir_obs, "Observação ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_engolir_obs,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_fatos, "Fatos relacionados de 2 a 4 anos", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiros_outros,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+              </div>
+          
+          <br>
+          <div class="well well-sm">Desenvolvimento neuropsicomotor</div>
+
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_sustentou, "Sustentou a cabeça com ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_sustentou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_sentou, "Sentou ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_sentou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_engatinhou, "Engatinhou ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_engatinhou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+            
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_pe, "Ficou em pé ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_pe,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_andou, "Andou ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_andou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+
+            </div>
+
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_falou, "Falou com ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_falou,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+          <br>
+          <div class="well well-sm">Desenvolvimento da Fala</div>
+
+              <div class="row">
+
+                  <div class="col-md-12 ">
+                         <div class="control-group">
+                          <%= f.label :primeiro_trocas, "Trocas ?", :class => 'control-label' %>
+                          <div class="controls">
+                          <%= f.text_field :primeiro_trocas,  :class => 'form-control' %></div>
+                          </div>
+                  </div>
+            </div>
+
+              
+
+            </div>
+
+
+          <div class="tab-pane" id="pdi"><br>
+
+            <div class="well well-sm">Plano de Desenvolvimento Indivídual (PDI)</div>
+
+              <div class="row">
+
+                  <div class="col-md-6 ">
+                         <div class="control-group">
+                          em Desenvolvimento
+                          </div>
+                  </div>
+
+                  
+
+            </div>
+
+          
+          <br>
+        </div>
+
+        </div>
+
+
+              </div>
+                    <br>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                    <%= f.submit "Salvar Aluno", class: "btn btn-large btn-primary" %>
+                        </div>
+                    </div>
+              </div>
+ 
+
+
 <% end %>
 </div>
+

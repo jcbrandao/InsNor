@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518232323) do
+ActiveRecord::Schema.define(version: 20150908202518) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "alunos", force: :cascade do |t|
-    t.string   "nome",                        limit: 255
-    t.string   "celular",                     limit: 255
-    t.string   "telefone",                    limit: 255
-    t.boolean  "ativo",                       limit: 1
+    t.string   "nome"
+    t.string   "celular"
+    t.string   "telefone"
+    t.boolean  "ativo"
     t.string   "endereco",                    limit: 80
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "cidade",                      limit: 255
-    t.string   "estado",                      limit: 255
-    t.string   "email",                       limit: 255
-    t.string   "numero",                      limit: 255
-    t.string   "bairro",                      limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "email"
+    t.string   "numero"
+    t.string   "bairro"
     t.string   "rg",                          limit: 50
     t.string   "cpf",                         limit: 50
     t.date     "data_nascimento"
@@ -73,18 +76,18 @@ ActiveRecord::Schema.define(version: 20150518232323) do
     t.string   "saude_medicacao",             limit: 50
     t.string   "saude_acompanhamento_medico", limit: 50
     t.string   "saude_nome_medico",           limit: 50
-    t.boolean  "saude_fono",                  limit: 1
-    t.boolean  "saude_psico",                 limit: 1
-    t.boolean  "saude_fisio",                 limit: 1
+    t.boolean  "saude_fono"
+    t.boolean  "saude_psico"
+    t.boolean  "saude_fisio"
     t.string   "saude_outros",                limit: 50
     t.string   "saude_tempo",                 limit: 50
     t.string   "saude_observacoes",           limit: 50
     t.string   "saude_alergia",               limit: 50
     t.string   "saude_convenio",              limit: 50
     t.string   "saude_tem_convenio",          limit: 50
-    t.boolean  "beneficio_bpc",               limit: 1
-    t.boolean  "beneficio_bf",                limit: 1
-    t.boolean  "beneficio_viva_leite",        limit: 1
+    t.boolean  "beneficio_bpc"
+    t.boolean  "beneficio_bf"
+    t.boolean  "beneficio_viva_leite"
     t.string   "beneficio_outro",             limit: 50
     t.string   "gestacao_gravidez",           limit: 50
     t.string   "gestacao_desejada",           limit: 50
@@ -108,14 +111,14 @@ ActiveRecord::Schema.define(version: 20150518232323) do
     t.string   "primeiro_relato",             limit: 50
     t.string   "primeiro_criado",             limit: 50
     t.string   "primeiro_doenca",             limit: 50
-    t.boolean  "primeiro_alergia",            limit: 1
-    t.boolean  "primeiro_rinite",             limit: 1
-    t.boolean  "primeiro_asma",               limit: 1
-    t.boolean  "primeiro_adenoide",           limit: 1
-    t.boolean  "primeiro_bronquite",          limit: 1
-    t.boolean  "primeiro_otite",              limit: 1
-    t.boolean  "primeiro_garganta",           limit: 1
-    t.boolean  "primeiro_bronco",             limit: 1
+    t.boolean  "primeiro_alergia"
+    t.boolean  "primeiro_rinite"
+    t.boolean  "primeiro_asma"
+    t.boolean  "primeiro_adenoide"
+    t.boolean  "primeiro_bronquite"
+    t.boolean  "primeiro_otite"
+    t.boolean  "primeiro_garganta"
+    t.boolean  "primeiro_bronco"
     t.string   "primeiros_outros",            limit: 50
     t.string   "primeiro_internado",          limit: 50
     t.string   "primeiro_epilepsia",          limit: 50
@@ -168,49 +171,69 @@ ActiveRecord::Schema.define(version: 20150518232323) do
     t.string   "primeiro_falou",              limit: 50
     t.string   "primeiro_trocas",             limit: 50
     t.string   "primeiro_engatinhou",         limit: 50
-    t.string   "avatar_file_name",            limit: 255
-    t.string   "avatar_content_type",         limit: 255
-    t.integer  "avatar_file_size",            limit: 4
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "ciclo",                       limit: 255
-    t.string   "ra",                          limit: 255
-    t.string   "idpdi",                       limit: 255
-    t.string   "deficiencia",                 limit: 255
+    t.string   "ciclo"
+    t.string   "ra"
+    t.string   "idpdi"
+    t.string   "deficiencia"
     t.date     "data_fechamento_diagnostico"
-    t.string   "escola_origem",               limit: 255
-    t.string   "naturalidade",                limit: 255
-    t.string   "irmaos",                      limit: 255
-    t.string   "quantas",                     limit: 255
-    t.string   "idade",                       limit: 255
-    t.text     "antecedentes",                limit: 65535
-    t.text     "caracteristicas",             limit: 65535
-    t.text     "opiniao",                     limit: 65535
-    t.text     "outra_natureza",              limit: 65535
-    t.string   "tipo_local",                  limit: 255
-    t.string   "saude",                       limit: 255
-    t.string   "uso_medicamentos",            limit: 255
-    t.string   "relatorio",                   limit: 255
-    t.string   "carteira_sus",                limit: 255
+    t.string   "escola_origem"
+    t.string   "naturalidade"
+    t.string   "irmaos"
+    t.string   "quantas"
+    t.string   "idade"
+    t.text     "antecedentes"
+    t.text     "caracteristicas"
+    t.text     "opiniao"
+    t.text     "outra_natureza"
+    t.string   "tipo_local"
+    t.string   "saude"
+    t.string   "uso_medicamentos"
+    t.string   "relatorio"
+    t.string   "carteira_sus"
   end
 
+  create_table "pdialunos", force: :cascade do |t|
+    t.text     "a_interesse"
+    t.text     "a_antencao"
+    t.text     "a_concentracao"
+    t.text     "a_compreencao"
+    t.text     "a_habilidades"
+    t.text     "a_pensamento"
+    t.text     "a_expressao"
+    t.text     "a_linguagem"
+    t.text     "a_percepcoes"
+    t.text     "a_diferenca"
+    t.text     "a_espacial"
+    t.integer  "aluno_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pdialunos", ["aluno_id"], name: "index_pdialunos_on_aluno_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 255
-    t.integer  "role",                   limit: 4
+    t.string   "name"
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "pdialunos", "alunos"
 end

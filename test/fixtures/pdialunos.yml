@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  a_interesse: MyText
+  a_antencao: MyText
+  a_concentracao: MyText
+  a_compreencao: MyText
+  a_habilidades: MyText
+  a_pensamento: MyText
+  a_expressao: MyText
+  a_linguagem: MyText
+  a_percepcoes: MyText
+  a_diferenca: MyText
+  a_espacial: MyText
+  aluno_id: 
+
+two:
+  a_interesse: MyText
+  a_antencao: MyText
+  a_concentracao: MyText
+  a_compreencao: MyText
+  a_habilidades: MyText
+  a_pensamento: MyText
+  a_expressao: MyText
+  a_linguagem: MyText
+  a_percepcoes: MyText
+  a_diferenca: MyText
+  a_espacial: MyText
+  aluno_id: 

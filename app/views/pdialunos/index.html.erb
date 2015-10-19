@@ -1,0 +1,38 @@
+<%- model_class = Pdialuno -%><br>
+<div class="panel panel-default" style="width: 80%; margin: 0 auto; ">
+  <div class="panel-body"><h2> Listando PDI-Alunos</h2>
+      <tr><%= will_paginate @pdialuno, renderer: BootstrapPagination::Rails %></tr>
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th><%= 'Código' %></th>
+          <th><%= 'Código PDI-Alunos' %></th>
+          <th><%= 'Código Aluno' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pdialunos.each do |pdialuno| %>
+          <tr>
+            <td width: 5% ><%= link_to pdialuno.id, pdialuno_path(pdialuno),:size => 13 %></td>
+            <td width: 5%><%= pdialuno.id %></td>
+            <td width: 5% ><%= pdialuno.aluno_id %></td>
+              <%= @pdialuno.aluno %>
+
+
+            <td width: 5% >
+              <%= link_to 'Mostrar',pdialuno_path(pdialuno), :class => 'btn btn-primary btn-sm' %>
+              <%= link_to 'Editar',edit_pdialuno_path(pdialuno), :class => 'btn btn-success btn-sm' %>
+              <%= link_to 'Apagar',pdialuno_path(pdialuno),:method => :delete, data: { confirm: 'Você tem certeza?'},:class => 'btn btn-danger btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+            <%= link_to 'Incluir novo PDI-Aluno',new_pdialuno_path,:class => 'btn btn-primary' %>
+        </div>
+      </div>
+
+</div>

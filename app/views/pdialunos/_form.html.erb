@@ -1,0 +1,22 @@
+<%= simple_form_for(@pdialuno) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :a_interesse %>
+    <%= f.input :a_antencao %>
+    <%= f.input :a_concentracao %>
+    <%= f.input :a_compreencao %>
+    <%= f.input :a_habilidades %>
+    <%= f.input :a_pensamento %>
+    <%= f.input :a_expressao %>
+    <%= f.input :a_linguagem %>
+    <%= f.input :a_percepcoes %>
+    <%= f.input :a_diferenca %>
+    <%= f.input :a_espacial %>
+    <%= f.association :aluno %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

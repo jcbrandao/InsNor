@@ -1,9 +1,1626 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Le styles -->
+<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+</head>
+ 
+<body>
+<br> 
+<div class="panel panel-default" style="width: 80%; margin: 0 auto; ">
+  <div class="panel-body"><h2> Mostrando Aluno</h2>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @aluno.nome %>
-</p>
+		<!-------->
+		<div id="content">
+		    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs"><li class="active">
+		            <a href="#dados_pessoais" data-toggle="tab" class="glyphicon glyphicon-user"> Dados Pessoais</a></li>
+		        <li><a href="#dados_familiares" data-toggle="tab" class="glyphicon glyphicon-home"> Dados Familiares</a></li>
+		        <li><a href="#dados_escolares" data-toggle="tab" class="glyphicon glyphicon-education"> Dados Escolares</a></li>
+		        <li><a href="#saude" data-toggle="tab"class="glyphicon glyphicon-plus-sign" > Histórico Saúde</a></li>
+		        <li><a href="#beneficios" data-toggle="tab"class="glyphicon glyphicon-star-empty" > Benefícios</a></li>
+		        <li><a href="#gestação" data-toggle="tab" class="glyphicon glyphicon-baby-formula"> Gestação/Nascimento</a></li>
+		        <li><a href="#vida" data-toggle="tab" class="glyphicon glyphicon-time"> 1º Ano de Vida</a></li>
 
-<%= link_to 'Edit', edit_aluno_path(@aluno) %> |
-<%= link_to 'Back', alunos_path %>
+		    </ul>
+		    <div id="my-tab-content" class="tab-content">
+
+		        <div class="tab-pane active" id="dados_pessoais"><br>
+
+						<!---Dados Pessoais---->
+ 						<div class="well well-sm">Dados do Aluno</div>
+					    
+
+					    <div class="row">
+
+					        <div class="col-sm-12 col-lg-2 ">
+
+					              <div class="control-group">
+					                <%= "Foto" %>
+					                <%= image_tag @aluno.avatar.url(:medium) %>
+					              </div>
+
+					        </div>
+
+					        <div class="col-sm-12 col-lg-10 ">
+					        	
+					        	<div class="row">
+	
+							        <div class="col-sm-4 col-lg-6">
+							              <div class="control-group">
+							                <%= "Nome" %>
+							                <div class="controls"><strong><%= @aluno.nome %></strong></div>
+							              </div>
+							         </div>     
+
+							        <div class="col-sm-4 col-lg-4">
+							              <div class="control-group">
+							                <%= "Endereço" %>
+							                <div class="controls"><strong><%= @aluno.endereco %></strong></div>
+							              </div>
+							         </div>     
+
+							        <div class="col-sm-4 col-lg-2">
+							              <div class="control-group">
+							                <%= "Número" %>
+							                <div class="controls"><strong><%= @aluno.numero %></strong></div>
+							              </div>
+	   						         </div> 
+								</div>
+
+
+		                        <div class="row">
+
+		                          <div class="col-sm-4 col-lg-6 ">
+		                                  <div class="control-group">
+		                                  <%= "Bairro" %>
+									      <div class="controls"><strong><%= @aluno.bairro %></strong></div>
+		                                </div>
+		                         </div>
+
+		                          <div class="col-sm-4 col-lg-4 ">
+		                                <div class="control-group">
+		                                  <%= "Cidade" %>
+									      <div class="controls"><strong><%= @aluno.cidade %></strong></div>
+		                                </div>
+		                          </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="Estado" %>
+									      <div class="controls"><strong><%= @aluno.estado %></strong></div>
+		                                </div>
+		                          </div>
+
+		                      </div>
+
+		                      <div class="row">
+
+		                          <div class="col-sm-4 col-lg-6 ">
+		                                  <div class="control-group">
+		                                  <%= "EMail" %>
+									      <div class="controls"><strong><%= @aluno.email %></strong></div>
+		                                </div>
+		                         </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%= "Tel. Residêncial" %>
+									      <div class="controls"><strong><%= @aluno.telefone %></strong></div>
+		                                </div>
+		                          </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="Tel. Celular" %>
+									      <div class="controls"><strong><%= @aluno.celular %></strong></div>
+		                                </div>
+		                          </div>
+
+		                         <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="Aluno Ativo ?" %>
+									      <div class="controls"><strong><%= @aluno.ativo==true ? "Sim" : "Não" %></strong></div>
+		                                </div>
+		                         </div>
+
+		                      </div>
+
+		                      <div class="row">
+
+		                          <div class="col-sm-4 col-lg-6 ">
+		                                  <div class="control-group">
+		                                  <%= "R.G." %>
+									      <div class="controls"><strong><%= @aluno.rg%></strong></div>
+
+		                                </div>
+		                         </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%= "C.P.F." %>
+									      <div class="controls"><strong><%= @aluno.cpf %></strong></div>
+		                                </div>
+		                          </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="Data Nascimento" %>
+									      <div class="controls"><strong><%= @aluno.data_nascimento %></strong></div>
+		                                </div>
+		                          </div>
+
+		                         <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="Data Cadastro" %>
+									      <div class="controls"><strong><%= @aluno.data_cadastro %></strong></div>
+		                                </div>
+		                         </div>
+
+		                      </div>
+ 
+		                     <div class="row">
+
+		                          <div class="col-sm-4 col-lg-6 ">
+		                                  <div class="control-group">
+		                                  <%= "Naturalidade" %>
+									      <div class="controls"><strong><%= @aluno.naturalidade %></strong></div>
+		                                </div>
+		                         </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%= "Ciclo" %>
+									      <div class="controls"><strong><%= @aluno.ciclo %></strong></div>
+		                                </div>
+		                          </div>
+
+		                          <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="R.A." %>
+									      <div class="controls"><strong><%= @aluno.ra %></strong></div>
+		                                </div>
+		                          </div>
+
+		                         <div class="col-sm-4 col-lg-2 ">
+		                                <div class="control-group">
+		                                  <%="SIGM" %>
+									      <div class="controls"><strong><%= @aluno.idpdi %></strong></div>
+		                                </div>
+		                         </div>
+
+		                      </div>
+
+						</div>
+					</div>
+
+					   <div class="row">
+
+					        <div class="col-xs-4">
+					              <div class="control-group">
+					                <%= "Deficiência" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.deficiencia %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Data Fechamento do Diagnóstico" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.data_fechamento_diagnostico %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					              <div class="control-group">
+					                <%= "Escola Origem" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.escola_origem %></strong>
+					                </div>
+					              </div>
+					        </div>
+						</div>
+						<!---Final dados Pessoais---->
+
+
+		        </div>
+		        
+		        <div class="tab-pane" id="dados_familiares"><br>
+
+     					<!---Dados Familiares---->
+ 						<div class="well well-sm">Dados do Pai</div>
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Nome Pai" %>
+					                <div class="controls"><strong><%= @aluno.nome_pai %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Endereço" %>
+					                <div class="controls"><strong><%= @aluno.endereco_pai %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+
+					              <div class="control-group">
+					                <%= "Número" %>
+					                <div class="controls"><strong><%= @aluno.numero_pai %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-6">
+					              <div class="control-group">
+					                <%= "Bairro" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.bairro_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Cidade" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.cidade_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+
+					              <div class="control-group">
+					                <%= "Estado" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.estado_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-3">
+					              <div class="control-group">
+					                <%= "Data Nascimento" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.data_nascimento_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					               <div class="control-group">
+					                <%= "Escolaridade" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.escolaridade_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					              <div class="control-group">
+					                <%= "Profissão" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.profissao_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+							<div class="col-md-3">
+
+					              <div class="control-group">
+					                <%= "Telefone" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.telefone_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-3">
+					              <div class="control-group">
+					                <%= "R.G." %>
+					                <div class="controls">
+					                  <strong><%= @aluno.cpf_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					               <div class="control-group">
+					                <%= "C.P.F." %>
+					                <div class="controls">
+					                  <strong><%= @aluno.rg_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					              <div class="control-group">
+					                <%= "Observação" %>
+					                <div class="controls">
+					                  <strong><%= @aluno.obs_pai %></strong>
+					                </div>
+					              </div>
+					        </div>
+					    </div><br>
+
+						<!---Final dados Pessoais---->
+
+ 						<div class="well well-sm">Dados da Maẽ</div>
+
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Nome Maẽ" %>
+					                <div class="controls"><strong><%= @aluno.nome_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Endereço" %>
+					                <div class="controls"><strong><%= @aluno.endereco_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+
+					              <div class="control-group">
+					                <%= "Número" %>
+					                <div class="controls"><strong><%= @aluno.numero_mae %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Bairro" %>
+					                <div class="controls"><strong><%= @aluno.bairro_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Cidade" %>
+					                <div class="controls"><strong><%= @aluno.cidade_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+
+					              <div class="control-group">
+					                <%= "Estado" %>
+					                <div class="controls"><strong><%= @aluno.estado_mae %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-3 ">
+					              <div class="control-group">
+					                <%= "Data Nascimento" %>
+					                <div class="controls"><strong><%= @aluno.data_nascimento_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					               <div class="control-group">
+					                <%= "Escolaridade" %>
+					                <div class="controls"><strong><%= @aluno.escolaridade_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					              <div class="control-group">
+					                <%= "Profissão" %>
+					                <div class="controls"><strong><%= @aluno.profissao_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					              <div class="control-group">
+					                <%= "Telefone" %>
+					                <div class="controls"><strong><%= @aluno.telefone_mae %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-3 ">
+					              <div class="control-group">
+					                <%= "R.G." %>
+					                <div class="controls"><strong><%= @aluno.rg_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-3">
+
+					               <div class="control-group">
+					                <%= "C.P.F." %>
+					                <div class="controls"><strong><%= @aluno.cpf_mae %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					              <div class="control-group">
+					                <%= "Observação" %>
+					                <div class="controls"><strong><%= @aluno.obs_mae %></strong></div>
+					              </div>
+					        </div>
+
+					    </div><br>
+
+ 						<div class="well well-sm">Histórico Familiar</div>
+	
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Tem irmãos? Quantos e Idade?" %>
+					                <div class="controls"><strong><%= @aluno.irmaos %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Quantas pessoas moram na Casa:" %>
+					                <div class="controls"><strong><%= @aluno.quantas %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					              <div class="control-group">
+					                <%= "Idade em que o aluno entrou na escola" %>
+					                <div class="controls"><strong><%= @aluno.idade %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Histórico escolar e antecedentes relevantes:" %>
+					                <div class="controls"><strong><%= @aluno.antecedentes %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Características do aluno." %>
+					                <div class="controls"><strong><%= @aluno.caracteristicas %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					              <div class="control-group">
+					                <%= "Opinião da Família sobre a vida escolar." %>
+					                <div class="controls"><strong><%= @aluno.opiniao %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Antecedentes de outra natureza." %>
+					                <div class="controls"><strong><%= @aluno.outra_natureza %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+
+					               <div class="control-group">
+					                <%= "Tipo/Local/Periodicidade" %>
+					                <div class="controls"><strong><%= @aluno.tipo_local %></strong></div>
+					              </div>
+					        </div>
+
+	
+					    </div>
+
+		        </div>
+
+		        <div class="tab-pane" id="dados_escolares"><br>
+	    				
+	    				<!---Dados Escolares---->
+ 						<div class="well well-sm">Desenvolvimento da Escrita</div>
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Trocas" %>
+					                <div class="controls"><strong><%= @aluno.escolar_trocas %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					               <div class="control-group">
+					                <%= "Fala Atual" %>
+					                <div class="controls"><strong><%= @aluno.escolar_fala_atual %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Entende Ordens" %>
+						                <div class="controls"><strong><%= @aluno.escolar_ordens %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Entrou na escola com ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_idade %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+
+					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Número de escolas que frequentou ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_numero_escolas %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Aproveitamento ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_aproveitamento %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+
+					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Comportamento ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_comportamento %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Atualmente frequenta escola? " %>
+						                <div class="controls"><strong><%= @aluno.escolar_frequenta_escola %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+        
+  					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Descrição vida escolar :" %>
+						                <div class="controls"><strong><%= @aluno.escolar_vida_escolar %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Descrição vida social :" %>
+						                <div class="controls"><strong><%= @aluno.escolar_vida_social %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+  
+  					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Com quem o aprendiz vive ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_vive %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Descrição do Ambiente Familiar :" %>
+						                <div class="controls"><strong><%= @aluno.escolar_ambiente_familiar %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+  
+  					    <div class="row">
+
+						        <div class="col-xs-6 ">
+						              <div class="control-group">
+						                <%= "Como o aprendiz prefere se distrair ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_distrair %></strong></div>
+						              </div>
+						        </div>
+
+						        <div class="col-md-6">
+
+						               <div class="control-group">
+						                <%= "Tem amigos ?" %>
+						                <div class="controls"><strong><%= @aluno.escolar_amigos %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+   
+	        	</div>
+
+
+		        <div class="tab-pane" id="saude"><br>
+	    				
+ 						<div class="well well-sm">Medicação</div>
+
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Medicação" %>
+					                <div class="controls"><strong><%= @aluno.saude_medicacao %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					               <div class="control-group">
+					                <%= "Alergia" %>
+					                <div class="controls"><strong><%= @aluno.saude_alergia %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Acompanhamento Médico" %>
+					                <div class="controls"><strong><%= @aluno.saude_acompanhamento_medico %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					               <div class="control-group">
+					                <%= "Nome médico" %>
+					                <div class="controls"><strong><%= @aluno.saude_nome_medico %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-xs-6 ">
+					              <div class="control-group">
+					                <%= "Tem convênio médico" %>
+					                <div class="controls"><strong><%= @aluno.saude_tem_convenio %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+
+					               <div class="control-group">
+					                <%= "Qual?" %>
+					                <div class="controls"><strong><%= @aluno.saude_convenio %></strong></div>
+					              </div>
+					        </div>
+
+					    </div><br>
+ 
+ 						<div class="well well-sm">Terapias fora do Instituto</div>
+
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Faz Fonoaudiologia ?" %>
+  							      	<div class="controls"><strong><%= @aluno.saude_fono==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Faz Psicologia ?" %>
+  							      	<div class="controls"><strong><%= @aluno.saude_psico==true ? "Sim" : "Não" %></strong></div>
+
+					              </div>
+					        </div>
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Faz outros tratamentos ?  Qual ?" %>
+					                <div class="controls"><strong><%= @aluno.saude_outros %></strong></div>
+					              </div>
+					        </div>
+						
+					    </div>
+						<br>
+ 						<div class="well well-sm">Histórico</div>
+
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Tem problemas de saúde ?" %>
+					                <div class="controls"><strong><%= @aluno.saude%></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Faz uso de medicamentos controlados? Quais?" %>
+					                <div class="controls"><strong><%= @aluno.uso_medicamentos %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Existe relatório com recomendação de saúde? Anexar" %>
+					                <div class="controls"><strong><%= @aluno.relatorio %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Número do Prontuário Centro de Saúde" %>
+					                <div class="controls"><strong><%= @aluno.carteira_sus %></strong></div>
+					              </div>
+					        </div>
+					    </div>
+			
+				</div>
+
+				<div class="tab-pane" id="beneficios"><br>
+ 						
+ 					<div class="well well-sm">Benefícios</div>
+
+					    <div class="row">
+
+					        <div class="col-xs-4 ">
+					              <div class="control-group">
+					                <%= "Benefício de Prestação Continuada (BPC)" %>
+  							      	<div class="controls"><strong><%= @aluno.beneficio_bpc==true ? "Sim" : "Não" %></strong></div>
+
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "Benefício de Bolsa Família (BF)" %>
+  							      	<div class="controls"><strong><%= @aluno.beneficio_bf==true ? "Sim" : "Não" %></strong></div>
+
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+						               <div class="control-group">
+						                <%= "Benefício Viva Leite (BVL)" %>
+	  							      	<div class="controls"><strong><%= @aluno.beneficio_viva_leite==true ? "Sim" : "Não" %></strong></div>
+						              </div>
+						    </div>
+
+					    </div>
+
+						<div class="row">
+
+						        <div class="col-md-12 ">
+						              <div class="control-group">
+						                <%= "Outros Benefícios- Especificar!" %>
+						                <div class="controls"><strong><%= @aluno.beneficio_outro %></strong></div>
+						              </div>
+						        </div>
+
+						</div>
+
+	        	</div>
+
+		        <div class="tab-pane" id="gestação"><br>
+	
+ 					<div class="well well-sm">Gestação</div>
+
+					    <div class="row">
+
+					        <div class="col-md-4 ">
+					              <div class="control-group">
+					                <%= "Como foi a gravidez?" %>
+					                <div class="controls"><strong><%= @aluno.gestacao_gravidez %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "A criança foi desejada?" %>
+					                <div class="controls"><strong><%= @aluno.gestacao_desejada %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "Sentiu a criança mexer?" %>
+   							      	<div class="controls"><strong><%= @aluno.gestacao_mexer==true ? "Sim" : "Não" %></strong></div>
+						           </div>
+						    </div>
+
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-4 ">
+					              <div class="control-group">
+					                <%= "Fez pré-natal?" %>
+   							      	<div class="controls"><strong><%= @aluno.gestacao_prenatal==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "Doenças na Gravidez?" %>
+					                <div class="controls"><strong><%= @aluno.gestacao_doencas %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "Usou algum medicamento durante a gravidez? Quais?" %>
+					                <div class="controls"><strong><%= @aluno.gestacao_medicamentos %></strong></div>
+						           </div>
+						    </div>
+
+						</div>
+
+				    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Observações sobre gravidez?" %>
+					                <div class="controls"><strong><%= @aluno.gestacao_sobre %></strong></div>
+					              </div>
+					        </div>
+
+					</div>
+					<br>
+ 					<div class="well well-sm">Condições de Nascimento</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Local de nascimento?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_local %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+
+					<br>
+ 					<div class="well well-sm">Parto</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Peso ao nascimento?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_peso %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+	        	
+		   			    <div class="row">
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Parto demorado ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_demorado %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+
+					<br>
+ 					<div class="well well-sm">Ao Nascer</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Circular de cordão?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_cordao %></strong></div>
+					              </div>
+					        </div>
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Oxigênio ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_oxigenio %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+	        	
+		   			    <div class="row">
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Doenças pós-parto ? Quais ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_doencas %></strong></div>
+					              </div>
+					        </div>
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Posição de nascimento ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_posicao %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+		   			    <div class="row">
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Primeiras reações ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_reacoes %></strong></div>
+					              </div>
+					        </div>
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Chorou lógo ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_chorou %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+		   			    <div class="row">
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Ficou roxo ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_roxo %></strong></div>
+					              </div>
+					        </div>
+
+							<div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Observações após o nascimento ?" %>
+					                <div class="controls"><strong><%= @aluno.nascimento_observacoes %></strong></div>
+					              </div>
+					        </div>
+						</div>
+	        	</div>
+
+		        <div class="tab-pane" id="vida"><br>
+
+ 					<div class="well well-sm">1º Ano de Vida</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Relato" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_relato %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+					               <div class="control-group">
+					                <%= "Com quem foi criado ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_criado %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12">
+					               <div class="control-group">
+					                <%= "Teve alguma doença grave? Qual?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_doenca %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+					<br>
+ 					<div class="well well-sm">Doenças da Infância</div>
+
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Alergia ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_alergia==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Rinite ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_rinite==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Asma ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_asma==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Adenoide ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_adenoide==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Bronquite ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_bronquite==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Otite ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_otite==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+						</div>
+	
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Garganta ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_garganta==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Broncopneumonia ?" %>
+  							      	<div class="controls"><strong><%= @aluno.primeiro_bronco==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-8 ">
+					              <div class="control-group">
+					                <%= "Outros?" %>
+					                <div class="controls"><strong><%= @aluno.primeiros_outros %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+					<div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Foi internado ? Qual a causa ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_internado %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Acidentes ? Quais ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_acidentes %></strong></div>
+					              </div>
+					        </div>
+					</div>
+
+					<div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Como é o sono?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_sono %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Solilóquio ? (fala sozinho)" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_soliloquio==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+					</div>
+
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Eplepsia ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_epilepsia==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Convulsao ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_convulsao==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Escolplesia noturna ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_escoplesia==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Bruxismo ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_bruxismo==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Sonambulismo ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_sonambulismo==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Pesadelo ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_pesadelo==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Ronco ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_ronco==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Baba noturna ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_baba==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Respira pela boca ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_respira==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Transpira ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_transpira==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Enurese Noturna?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_eneurese==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Enurese Diurna?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_eneurese==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Roe unha?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_unha==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Mão na boca ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_mao==true ? "Sim" : "Não" %></strong></div>
+					                <div class="controls"><strong><%= @aluno.primeiro_mao %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Fica de boca aberta?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_boca==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Chupa o dedo?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_chupa==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Chupeta ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_chupeta==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Mamadeira?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_mamadeira==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Audição ? " %>
+					                <div class="controls"><strong><%= @aluno.primeiro_audicao %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+					               <div class="control-group">
+					                <%= "Visão ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_visao %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Sexualidade ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_sexualidade %></strong></div>
+					              </div>
+					        </div>
+					    </div>
+
+					<br>
+ 					<div class="well well-sm">Alimentação</div>
+
+					    <div class="row">
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Mamou logo ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_mamou==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2">
+					               <div class="control-group">
+					                <%= "Engolia ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_engolia==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= "Vomitava ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_vomitava==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= " Engasgava ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_engasgava==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= " Sucção forte?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_succao==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+					        <div class="col-md-2 ">
+					              <div class="control-group">
+					                <%= " Refluxo ?" %>
+   							      	<div class="controls"><strong><%= @aluno.primeiro_refluxo==true ? "Sim" : "Não" %></strong></div>
+					              </div>
+					        </div>
+					  </div>
+
+					    <div class="row">
+
+					        <div class="col-md-4 ">
+					              <div class="control-group">
+					                <%= "Amamentação no peito até que idade ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_amamentacao %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4 ">
+					              <div class="control-group">
+					                <%= "Usou mamadeira ? até que idade ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_mamadeira_01 %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-4">
+					               <div class="control-group">
+					                <%= "Em que idade iniciou a alimentação salgada?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_inicio_alimentacao %></strong></div>
+					              </div>
+					        </div>
+						
+
+						</div>
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Consistência ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_concistencia %></strong></div>
+					              </div>
+					        </div>
+						</div>
+					<br>
+					        
+					<div class="well well-sm">Atitude no Desmame</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Seio ? Como parou?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_seio %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6">
+					               <div class="control-group">
+					                <%= "Mamadeira ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_mamadeira_02 %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Rejeitou alimentação alguma vez ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_rejeitou %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= " Atitude Tomada" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_tomada %></strong></div>
+					              </div>
+					        </div>
+
+					    </div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Foi super alimentado" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_super %></strong></div>
+					              </div>
+					        </div>
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= " Quando iniciou alimentos sólidos ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_solidos %></strong></div>
+					              </div>
+					        </div>
+   	 				  </div>
+  
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Alimentação Atual" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_atual %></strong></div>
+					              </div>
+					        </div>
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= " Mastiga para engolir" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_engolir %></strong></div>
+					              </div>
+					        </div>
+   	 				  </div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Observação" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_engolir_obs %></strong></div>
+					              </div>
+					        </div>
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Fatos relacionados de 2 a 4 anos" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_fatos %></strong></div>
+					              </div>
+					        </div>
+   	 				  </div>
+					
+					<br>
+					<div class="well well-sm">Desenvolvimento neuropsicomotor</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Sustentou a cabeça com ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_sustentou %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Sentou ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_sentou %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Engatinhou ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_engatinhou %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+					  
+					    <div class="row">
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Ficou em pé ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_pe %></strong></div>
+					              </div>
+					        </div>
+
+					        <div class="col-md-6 ">
+					              <div class="control-group">
+					                <%= "Andou ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_andou %></strong></div>
+					              </div>
+					        </div>
+
+						</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Falou com ?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_falou %></strong></div>
+					              </div>
+					        </div>
+						</div>
+					<br>
+					<div class="well well-sm">Desenvolvimento da Fala</div>
+
+					    <div class="row">
+
+					        <div class="col-md-12 ">
+					              <div class="control-group">
+					                <%= "Trocas?" %>
+					                <div class="controls"><strong><%= @aluno.primeiro_trocas %></strong></div>
+					              </div>
+					        </div>
+						</div>
+
+
+
+		        </div>
+
+		    </div>
+		</div>
+		 
+	</div> <!-- container -->
+
+	      <div class="panel panel-default">
+        <div class="panel-body">
+            <%= link_to 'Mostrar Alunos',alunos_path,:class => 'btn btn-primary' %>
+        </div>
+      </div>
+
+</div>
+
+		 
+		<script type="text/javascript">
+		    jQuery(document).ready(function ($) {
+		        $('#tabs').tab();
+		    });
+		</script>    
+		 
+		<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+		 
+</body>
+</html>
+	

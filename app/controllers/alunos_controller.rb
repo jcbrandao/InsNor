@@ -12,6 +12,14 @@ class AlunosController < ApplicationController
   # GET /alunos/1
   # GET /alunos/1.json
   def show
+  
+    @alunos = Aluno.find(params[:id])
+
+    respond_to do |format|
+    format.html #show.html
+    format.js
+    format.json { render :json => @host }
+    end
   end
 
   # GET /alunos/new
@@ -95,13 +103,14 @@ class AlunosController < ApplicationController
         :primeiro_relato, :primeiro_criado, :primeiro_doenca, :primeiro_alergia, :primeiro_rinite, :primeiro_asma, :primeiro_adenoide, :primeiro_bronquite, :primeiro_otite, :primeiro_garganta,
         :primeiro_bronco, :primeiros_outros, :primeiro_internado, :primeiro_epilepsia, :primeiro_convulsao, :primeiro_acidentes, :primeiro_sono, :primeiro_soliloquio, :primeiro_escoplesia,
         :primeiro_bruxismo, :primeiro_sonambulismo, :primeiro_pesadelo, :primeiro_ronco, :primeiro_baba, :primeiro_respira, :primeiro_transpira, :primeiro_eneurese, :primeiro_audicao,
-        :primeiro_visao, :primeiro_unha, :primeiro_mao, :primeiro_boca, :primeiro_chupa, :primeiro_chupeta, :primeiro_mamadeira, :primeiro_sexualidade, :primeiro_mamou, :primeiro_engolia,
-        :primeiro_vomitava, :primeiro_engasgava, :primeiro_succao, :primeiro_refluxo, :primeiro_amamentacao, :primeiro_mamadeira_01, :primeiro_inicio_alimentacao, :primeiro_concistencia,
+        :primeiro_visao, :primeiro_unha, :primeiro_mao, :primeiro_boca, :primeiro_chupa, :primeiro_chupeta, :primeiros_outros, :primeiro_mamadeira, :primeiro_sexualidade, :primeiro_mamou, :primeiro_engolia,
+        :primeiro_vomitava, :primeiro_engasgava, :primeiro_succao, :primeiros_outros, :primeiro_refluxo, :primeiro_amamentacao, :primeiro_mamadeira_01, :primeiro_inicio_alimentacao, :primeiro_concistencia,
         :primeiro_seio, :primeiro_mamadeira_02, :primeiro_rejeitou, :primeiro_tomada, :primeiro_super, :primeiro_solidos, :primeiro_atual, :primeiro_engolir, :primeiro_engolir_obs, :primeiro_fatos,
         :primeiro_sustentou, :primeiro_sentou, :primeiro_pe, :primeiro_andou, :primeiro_falou, :primeiro_trocas, :primeiro_engatinhou,
+
         :irmaos, :quantas, :idade, :antecedentes, :caracteristicas, :opiniao, :outra_natureza, :tipo_local, :irmao, :quantas, :idade, :antecedentes, :caracteristicas, 
         :opiniao, :outra_natureza, :tipo_local, :saude, :uso_medicamentos, :relatorio, :carteira_sus, :ciclo, :ra, :idpdi, :deficiencia, :data_fechamento_diagnostico,
-        :escola_origem
+        :escola_origem, :avatar
 
         )
     end
